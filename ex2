@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+// Функция для нахождения суммы цифр числа
+int sumOfDigits(int number) {
+   
+    int sum = 0;
+
+    while (number > 0) {
+        sum += number % 10;
+        number /= 10;
+    }
+
+    return sum;
+}
+
+// Функция, выполняющая итерации по нахождению суммы цифр до однозначного числа
+int findSingleDigitSum(int n) {
+    int sum = sumOfDigits(n);
+
+    while (sum > 9) {
+        sum = sumOfDigits(sum);
+    }
+
+    return sum;
+}
+
+int main() {
+    setlocale(0, "");
+    int n;
+    cout << "Введите число: ";
+    cin >> n;
+
+    int result = findSingleDigitSum(n);
+
+    cout << "Однозначное число: " << result << endl;
+
+    return 0;
+}

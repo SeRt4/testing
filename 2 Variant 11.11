@@ -3,23 +3,23 @@
 using namespace std;
 
 bool Square(int num) {
-    int sqrtNum = sqrt(num);
-    return (sqrtNum * sqrtNum == num);
+    int Num = sqrt(num); // sqrt возвращет квадратный корень
+    return (Num * Num == num);
 }
 
-void findNumber(int n) {
+void findNumber(int n) { // указывает на значение не имеющее типа
     cout << "Числа, представимые в виде суммы квадратов двух натуральных чисел:" << endl;
     for (int Number = 1; Number <= n; Number++) {
-        bool found = false;
-        for (int i = 1; i <= sqrt(Number); i++) {
-            int remainder = Number - i * i;
+        bool found = false; // если нет остатка то выполняется цикл
+        for (int i = 1; i <= sqrt(Number); i++) { // sqrt возвращет квадратный корень
+            int remainder = Number - i * i; 
             if (Square(remainder)) {
                 cout << Number << " = " << i << "^2 + " << sqrt(remainder) << "^2" << endl;
                 found = true;
-                break;
+                break; // остаток есть - гг
             }
         }
-        if (!found) {
+        if (!found) { // не равно found
             cout << Number << " нельзя представить в виде суммы квадратов двух натуральных чисел" << endl;
         }
     }

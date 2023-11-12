@@ -4,18 +4,23 @@ using namespace std;
 
 bool Square(int num) {
     int sqrtNum = sqrt(num);
-    return sqrtNum * sqrtNum == num;
+    return (sqrtNum * sqrtNum == num);
 }
 
-void SumOfSquares(int n) {
-    cout << "Числа от 1 до " << n << " это может быть представлено в виде суммы квадратов:\n";
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= i; j++) {
-            int sum = j * j + (i - j) * (i - j);
-            if (Square(sum)) {
-                cout << i << " = " << j << "^2 + " << (i - j) << "^2\n";
+void findNumber(int n) {
+    cout << "Числа, представимые в виде суммы квадратов двух натуральных чисел:" << endl;
+    for (int Number = 1; Number <= n; Number++) {
+        bool found = false;
+        for (int i = 1; i <= sqrt(Number); i++) {
+            int remainder = Number - i * i;
+            if (Square(remainder)) {
+                cout << Number << " = " << i << "^2 + " << sqrt(remainder) << "^2" << endl;
+                found = true;
                 break;
             }
+        }
+        if (!found) {
+            cout << Number << " нельзя представить в виде суммы квадратов двух натуральных чисел" << endl;
         }
     }
 }
@@ -23,8 +28,8 @@ void SumOfSquares(int n) {
 int main() {
     setlocale(0, "");
     int n;
-    cout << "Введите натуральное число: ";
+    cout << "Введите число n: ";
     cin >> n;
-    SumOfSquares(n);
+    findNumber(n);
     return 0;
 }
